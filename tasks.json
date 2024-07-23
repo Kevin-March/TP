@@ -1,0 +1,52 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build flex and bison",
+            "type": "shell",
+            "command": "win_flex",
+            "args": [
+                "-o",
+                "${workspaceFolder}\\lex.yy.c",
+                "${workspaceFolder}\\scanner.l"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "build bison",
+            "type": "shell",
+            "command": "win_bison",
+            "args": [
+                "-d",
+                "-o",
+                "${workspaceFolder}\\parser.tab.c",
+                "${workspaceFolder}\\parser.y"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "compile",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "${workspaceFolder}\\parser.tab.c",
+                "${workspaceFolder}\\lex.yy.c",
+                "-o",
+                "${workspaceFolder}\\translator"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}
